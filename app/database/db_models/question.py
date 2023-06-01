@@ -7,6 +7,6 @@ class Question(Base):
 
     id = Column(Integer, primary_key=True)
     question_id = Column(Integer, nullable=False, unique=True)
-    question_text = Column(String, nullable=False)
+    question_text = Column(String, nullable=False, unique=True)
     answer = Column(String, nullable=False)
     created_at = Column(DateTime(timezone=True))

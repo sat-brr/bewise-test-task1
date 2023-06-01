@@ -1,21 +1,23 @@
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.database.engine import get_session
 
 from app.database.db_models.question import Question
 
 
 class QuestionDAO:
     """Data Access Object"""
+
     @classmethod
-    async def create_question(cls, session: AsyncSession, **kwargs) -> Question | None:
+    async def create_question(
+        cls, session: AsyncSession, **kwargs
+    ) -> Question | None:
 
         try:
-            new_object = Question(**kwargs)
-            session.add(new_object)
+            new_question = Question(**kwargs)
+            session.add(new_question)
             await session.commit()
-            return new_object
+            return new_question
         except SQLAlchemyError:
             await session.rollback()
 
