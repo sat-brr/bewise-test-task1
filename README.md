@@ -44,12 +44,13 @@ POSTGRES_USER=Имя Пользователя БД
 POSTGRES_PASSWORD=Пароль от пользователя БД
 APP_PORT=Порт, который будет обслуживать веб-сервис(по умолчанию указывать 8000)
 ```
-3. Построить контейнеры
+3. Собрать контйнеры
 ```
 cd questions-for-thequiz
 make build
 ```
 4. Запустить контейнеры
 ```
+cd questions-for-thequiz
 make run_app
 ```
