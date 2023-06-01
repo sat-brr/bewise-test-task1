@@ -1,16 +1,41 @@
-version: "3.0"
+version: "3.9"
 
 services:
-  db:
-    container_name: postgresql_db
+  db_quiz:
+    container_name: db_quiz
     image: postgres:14.1-alpine
     restart: always
     ports:
-      - 5433:5432
+      - 5432:5432
     env_file:
       - .env
     volumes:
       - db-data:/var/lib/postgresql/data:rw
+    networks:
+      - custom
+  
+  questions_for_the_quiz:
+    container_name: questions
+    image: questions
+    depends_on:
+      - db_quiz
+    restart: always
+    command: bash -c "alembic upgrade head && cd app && python3 main.py"
+    env_file:
+      - .env
+    environment:
+      DB_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db_quiz:5432/${POSTGRES_DB}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    networks:
+      - custom
+
 
 volumes:
   db-data:
+networks:
+  custom:
+    driver: bridge
