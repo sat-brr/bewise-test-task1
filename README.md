@@ -1,3 +1,5 @@
+[![flake8](https://github.com/sat-brr/questions-for-thequiz/actions/workflows/flake8.yml/badge.svg)](https://github.com/sat-brr/questions-for-thequiz/actions/workflows/flake8.yml)
+
 # QuestionsForTheQuiz
 
 ## Описание
@@ -33,7 +35,7 @@ curl -X 'POST' \
 ### Установка и запуск сервиса в Docker
 1. Склонировать репозиторий
 ```
-git clone https://github.com/sat-brr/bewise-test-task1.git
+git clone https://github.com/sat-brr/questions-for-thequiz.git
 ```
 2. Создать файл .env в корневой папке проекта и заполнить его.
 ```
@@ -44,7 +46,7 @@ APP_PORT=Порт, который будет обслуживать веб-се�
 ```
 3. Построить контейнеры
 ```
-cd bewise-test-task1
+cd questions-for-thequiz
 make build
 ```
 4. Запустить контейнеры
